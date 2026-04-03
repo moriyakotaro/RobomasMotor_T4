@@ -396,7 +396,7 @@ void RobomasMotor::Control(){
 					msg1.buf[(i-5)*2+1] = ((int16_t)this->DataM2006[i].order_ampare) & 0xFF;
 				}
 				break;
-			case GM6020:
+			case GM6020:{
 				uint8_t id = i - 4; 
 				if(id <= 4){
 					is_msg1_data = true;
@@ -408,6 +408,7 @@ void RobomasMotor::Control(){
 					msg3.buf[(id-5)*2+1] = ((int16_t)this->DataGM6020[id].order_voltage) & 0xFF;
 				}
 				break;
+			}
 			default:
 				break;
 		}
@@ -550,19 +551,28 @@ void RobomasMotor::dispMotorPositionControlDataGM6020(uint8_t id){
 
 void RobomasMotor::dispUsingMotorM3508(){
 	Serial.print("using MotorM3508\t");
-	for(int i=1; i<=8; i++) Serial.print(is_useM3508[i]);Serial.print(" ");
+	for (int i = 1; i <= 8; i++) {
+		Serial.print(is_useM3508[i]);
+		Serial.print(" ");
+	}
 	Serial.println();
 }
 
 void RobomasMotor::dispUsingMotorM2006(){
 	Serial.print("using MotorM2006\t");
-	for(int i=1; i<=8; i++) Serial.print(is_useM2006[i]);Serial.print(" ");
+	for (int i = 1; i <= 8; i++) {
+        Serial.print(is_useM2006[i]);
+        Serial.print(" ");
+    }
 	Serial.println();
 }
 
 void RobomasMotor::dispUsingMotorGM6020(){
 	Serial.print("using MotorGM6020\t");
-	for(int i=1; i<=7; i++) Serial.print(is_useGM6020[i]);Serial.print(" ");
+    for (int i = 1; i <= 7; i++) {
+        Serial.print(is_useGM6020[i]);
+        Serial.print(" ");
+    }
 	Serial.println();
 }
 
